@@ -18,13 +18,14 @@ const styles = {
 
 const KeywordInput = props => {
   const { classes } = props;
-  const [keyword, setKeyword] = React.useState('hanami');
+  const [keyword, setKeyword] = React.useState('');
   const { dispatch } = React.useContext(Store);
+  const isEmpty = () => keyword === '';
 
   return (
     <>
       <TextField label="Keyword" className={classes.input} value={keyword} onChange={e => setKeyword(e.target.value)} />
-      <Button variant="contained" color="primary" className={classes.button} onClick={() => search(keyword, dispatch)}>
+      <Button variant="contained" color="primary" className={classes.button} disabled={isEmpty()} onClick={() => search(keyword, dispatch)}>
         Search
       </Button>
     </>
